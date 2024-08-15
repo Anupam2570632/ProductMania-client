@@ -9,6 +9,7 @@ const AllProducts = () => {
     const [search, setSearch] = useState('')
     const [uniqueStatus, setUniqueStatus] = useState({})
     const [selectedBrand, setSelectedBrand] = useState('')
+    const [searchType, setSearchType]= useState('')
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -18,6 +19,7 @@ const AllProducts = () => {
     const handleReset = () => {
         setSearch('')
         setSelectedBrand('')
+        setSearchType('')
     }
 
 
@@ -51,7 +53,14 @@ const AllProducts = () => {
             <div className='p-4 max-w-[300px] mx-auto'>
                 <label className="input input-bordered flex items-center gap-2">
                     <form onSubmit={handleSearch}>
-                        <input type="text" name='searchValue' className="grow" placeholder="Search" />
+                        <input
+                            type="text"
+                            name='searchValue'
+                            className="grow"
+                            placeholder="Search"
+                            value={searchType} 
+                            onChange={(e) => setSearchType(e.target.value)}
+                        />
                         <button type='submit'></button>
                     </form>
                     <svg
@@ -85,7 +94,7 @@ const AllProducts = () => {
                                     <div className='text-start hover:bg-base-300 py-1 pl-4' key={index}>
                                         <div className="form-control">
                                             <label className="cursor-pointer flex items-center gap-2">
-                                            <input
+                                                <input
                                                     type="radio"
                                                     name="brand"
                                                     className="radio radio-success"

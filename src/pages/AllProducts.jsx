@@ -15,6 +15,11 @@ const AllProducts = () => {
         setSearch(e.target.searchValue.value)
     }
 
+    const handleReset = () => {
+        setSearch('')
+        setSelectedBrand('')
+    }
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}`)
@@ -23,7 +28,7 @@ const AllProducts = () => {
                 setProducts(data)
                 console.log(data)
             })
-    }, [search])
+    }, [search, selectedBrand])
 
     useEffect(() => {
         fetch(`http://localhost:5000/unique-values`)
@@ -34,6 +39,7 @@ const AllProducts = () => {
     const handleBrandChange = (event) => {
         const brand = event.target.value;
         setSelectedBrand(brand)
+        console.log(brand)
 
     };
 
@@ -65,39 +71,43 @@ const AllProducts = () => {
 
             {/* if no products available */}
             {
-                products.length === 0 && <div>
+                products?.length === 0 && <div>
                     no products found
                 </div>
             }
             <div className='flex flex-col lg:flex-row gap-10'>
                 <div className='lg:w-1/5 '>
-                    <h1>Brand Name</h1>
-                    <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>
-                        {
-                            uniqueStatus?.uniqueBrands?.map((brand, index) => (
-                                <div className='text-start hover:bg-base-300 py-1 pl-4' key={index}>
-                                    <div className="form-control">
-                                        <label className="cursor-pointer flex items-center gap-2">
+                    <div>
+                        <h1>Brand Name</h1>
+                        <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>
+                            {
+                                uniqueStatus?.uniqueBrands?.map((brand, index) => (
+                                    <div className='text-start hover:bg-base-300 py-1 pl-4' key={index}>
+                                        <div className="form-control">
+                                            <label className="cursor-pointer flex items-center gap-2">
                                             <input
-                                                type="radio"
-                                                name="brand"
-                                                className="radio radio-success"
-                                                value={brand}
-                                                onChange={(e) => handleBrandChange(e)}
-                                            />
-                                            <span className="text-start">{brand}</span>
-                                        </label>
+                                                    type="radio"
+                                                    name="brand"
+                                                    className="radio radio-success"
+                                                    value={brand}
+                                                    checked={selectedBrand === brand}
+                                                    onChange={handleBrandChange}
+                                                />
+                                                <span className="text-start">{brand}</span>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        }
+                                ))
+                            }
+                        </div>
                     </div>
+                    <button onClick={handleReset} className='px-4 py-2 bg-green-400 text-white font-bold'>Reset</button>
 
                 </div>
                 <div className='grid lg:w-4/5 grid-cols-1 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-4'>
                     {
                         // single product card
-                        products.map((product) => <div className='productCard relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
+                        products?.map((product) => <div className='productCard relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
                             <img className='productImage h-[300px] w-[300px] object-cover object-center' src={product.productImage} alt={product.productName} />
                             <p className='absolute bg-green-500 rounded-full px-2 flex gap-1 items-center top-4 right-6 text-white'><FaStar className='text-yellow-300' />{product?.ratings}</p>
                             <h2 className='font-bold text-gray-500'>{product?.productName}</h2>

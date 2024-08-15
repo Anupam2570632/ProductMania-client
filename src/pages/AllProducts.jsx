@@ -9,7 +9,8 @@ const AllProducts = () => {
     const [search, setSearch] = useState('')
     const [uniqueStatus, setUniqueStatus] = useState({})
     const [selectedBrand, setSelectedBrand] = useState('')
-    const [searchType, setSearchType]= useState('')
+    const [selectedCategory, setSelectedCategory] = useState('')
+    const [searchType, setSearchType] = useState('')
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -19,12 +20,13 @@ const AllProducts = () => {
     const handleReset = () => {
         setSearch('')
         setSelectedBrand('')
+        setSelectedCategory('')
         setSearchType('')
     }
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}`)
+        fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
@@ -41,9 +43,11 @@ const AllProducts = () => {
     const handleBrandChange = (event) => {
         const brand = event.target.value;
         setSelectedBrand(brand)
-        console.log(brand)
-
     };
+    const handleCategoryChange = (event) => {
+        const category = event.target.value;
+        setSelectedCategory(category)
+    }
 
     console.log(uniqueStatus)
 
@@ -58,7 +62,7 @@ const AllProducts = () => {
                             name='searchValue'
                             className="grow"
                             placeholder="Search"
-                            value={searchType} 
+                            value={searchType}
                             onChange={(e) => setSearchType(e.target.value)}
                         />
                         <button type='submit'></button>
@@ -103,6 +107,30 @@ const AllProducts = () => {
                                                     onChange={handleBrandChange}
                                                 />
                                                 <span className="text-start">{brand}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <h1>Category</h1>
+                        <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>
+                            {
+                                uniqueStatus?.uniqueCategories?.map((category, index) => (
+                                    <div className='text-start hover:bg-base-300 py-1 pl-4' key={index}>
+                                        <div className="form-control">
+                                            <label className="cursor-pointer flex items-center gap-2">
+                                                <input
+                                                    type="radio"
+                                                    name="category"
+                                                    className="radio radio-success"
+                                                    value={category}
+                                                    checked={selectedCategory === category}
+                                                    onChange={handleCategoryChange}
+                                                />
+                                                <span className="text-start">{category}</span>
                                             </label>
                                         </div>
                                     </div>

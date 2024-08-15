@@ -3,10 +3,10 @@ import { Link, NavLink } from 'react-router-dom';
 
 const NavBar = () => {
 
-    const links =<>
-    <li><NavLink to={'/'}>Home</NavLink></li>
-    <li><NavLink to={'/products'}>All Product</NavLink></li>
-    <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+    const links = <>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/products'}>All Product</NavLink></li>
+        <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
     </>
 
     return (
@@ -31,16 +31,19 @@ const NavBar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {links}
+                        <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">LogIn</button>
+                        <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">SignUp</button>
+
                     </ul>
                 </div>
                 <Link to={'/'} className="text-3xl font-bold text-blue-600">Product<span className='text-red-600'>Mania</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                   {links}
+                    {links}
                 </ul>
             </div>
-            <div className="navbar-end space-x-4">
+            <div className="navbar-end space-x-4 lg:flex hidden">
                 <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">LogIn</button>
                 <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">SignUp</button>
             </div>

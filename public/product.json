@@ -1,0 +1,111 @@
+[
+    {
+      "productName": "Wireless Bluetooth Headphones",
+      "productImage": "https://plus.unsplash.com/premium_photo-1679513691485-711d030f7e94?q=80&w=2013&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "High-quality wireless Bluetooth headphones with noise cancellation.",
+      "price": 79.99,
+      "category": "Electronics",
+      "ratings": 4.5,
+      "creationDateTime": "2024-08-14T10:15:00Z"
+    },
+    {
+      "productName": "Smartphone Stand",
+      "productImage": "https://images.unsplash.com/photo-1579609598065-79f8e5bcfb70?q=80&w=1908&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Adjustable smartphone stand with a sleek design.",
+      "price": 12.99,
+      "category": "Accessories",
+      "ratings": 4.2,
+      "creationDateTime": "2024-08-13T09:00:00Z"
+    },
+    {
+      "productName": "4K LED Monitor",
+      "productImage": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ultra HD 4K LED monitor with vibrant colors and high resolution.",
+      "price": 299.99,
+      "category": "Electronics",
+      "ratings": 4.8,
+      "creationDateTime": "2024-08-12T14:30:00Z"
+    },
+    {
+      "productName": "Gaming Mouse",
+      "productImage": "https://images.unsplash.com/photo-1676315487574-0d456abe4e1e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ergonomic gaming mouse with customizable DPI settings.",
+      "price": 25.99,
+      "category": "Electronics",
+      "ratings": 4.6,
+      "creationDateTime": "2024-08-11T16:45:00Z"
+    },
+    {
+      "productName": "Stainless Steel Water Bottle",
+      "productImage": "https://plus.unsplash.com/premium_photo-1681284938505-62efa3494bf2?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Insulated stainless steel water bottle with a 24-hour temperature retention.",
+      "price": 19.99,
+      "category": "Home & Kitchen",
+      "ratings": 4.7,
+      "creationDateTime": "2024-08-10T11:20:00Z"
+    },
+    {
+      "productName": "KeyBoard",
+      "productImage": "https://images.unsplash.com/photo-1628676633339-81fc485c635c?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Eco-friendly yoga mat with a non-slip surface.",
+      "price": 29.99,
+      "category": "Electronics",
+      "ratings": 4.4,
+      "creationDateTime": "2024-08-09T13:10:00Z"
+    },
+    {
+      "productName": "Bluetooth Speaker",
+      "productImage": "https://images.unsplash.com/photo-1589003077984-894e133dabab?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Portable Bluetooth speaker with deep bass and long battery life.",
+      "price": 49.99,
+      "category": "Electronics",
+      "ratings": 4.3,
+      "creationDateTime": "2024-08-08T15:25:00Z"
+    },
+    {
+      "productName": "Running Shoes",
+      "productImage": "https://images.unsplash.com/photo-1709258228137-19a8c193be39?q=80&w=2011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Lightweight running shoes with excellent cushioning and support.",
+      "price": 65.99,
+      "category": "Clothing",
+      "ratings": 4.6,
+      "creationDateTime": "2024-08-07T12:50:00Z"
+    },
+    {
+      "productName": "Wireless Charger",
+      "productImage": "https://images.unsplash.com/photo-1633381638729-27f730955c23?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Fast wireless charger compatible with all Qi-enabled devices.",
+      "price": 19.99,
+      "category": "Electronics",
+      "ratings": 4.5,
+      "creationDateTime": "2024-08-06T10:05:00Z"
+    },
+    {
+      "productName": "Coffee Maker",
+      "productImage": "https://images.unsplash.com/photo-1458060390477-1b8bc1cfe017?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Single-serve coffee maker with customizable brewing options.",
+      "price": 89.99,
+      "category": "Home & Kitchen",
+      "ratings": 4.8,
+      "creationDateTime": "2024-08-05T09:40:00Z"
+    },
+    {
+      "productName": "Leather Wallet",
+      "productImage": "https://images.unsplash.com/photo-1689844833510-10939e60e8dc?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Genuine leather wallet with multiple card slots and RFID protection.",
+      "price": 24.99,
+      "category": "Accessories",
+      "ratings": 4.7,
+      "creationDateTime": "2024-08-04T13:55:00Z"
+    },
+    {
+      "productName": "Noise Cancelling Earbuds",
+      "productImage": "https://images.unsplash.com/photo-1677346414290-d337cbc682a6?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Compact noise-cancelling earbuds with crystal clear sound.",
+      "price": 59.99,
+      "category": "Electronics",
+      "ratings": 4.6,
+      "creationDateTime": "2024-08-03T11:15:00Z"
+    }
+  ]
+  

@@ -1,0 +1,4 @@
+.productCard:hover .productImage{
+    transform: scale(1.05);
+    transition-duration: 300ms;
+}

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa6";
 import './css/product.css'
 import { MdPlayArrow } from 'react-icons/md';
+import { TbCalendarCog } from "react-icons/tb";
+import { FaTimesCircle } from 'react-icons/fa';
+import { IoTime } from 'react-icons/io5';
+
 
 
 const AllProducts = () => {
@@ -16,6 +20,8 @@ const AllProducts = () => {
     const [maxValue, setMaxValue] = useState(0);
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(100000)
+    const [sort, setSort] = useState('')
+    const [recent, setRecent] = useState('')
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -31,17 +37,19 @@ const AllProducts = () => {
         setMaxValue(0)
         setMaxPrice(100000)
         setMinValue(0)
+        setRecent('')
+        setSort('')
     }
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}`)
+        fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
                 console.log(data)
             })
-    }, [search, selectedBrand, selectedCategory, maxPrice, minPrice])
+    }, [search, selectedBrand, selectedCategory, maxPrice, minPrice, sort, recent])
 
     useEffect(() => {
         fetch(`http://localhost:5000/unique-values`)
@@ -65,7 +73,11 @@ const AllProducts = () => {
     };
 
 
-    console.log(uniqueStatus)
+    const handleSortChange = (e) => {
+        setSort(e.target.value)
+    }
+
+    console.log(sort)
 
     return (
         <div className='container mx-auto py-10'>
@@ -108,6 +120,17 @@ const AllProducts = () => {
                             </svg>
                         </label>
                     </div>
+
+                    {/* sorting div */}
+                    <div className='flex items-center gap-2'>
+                        <select onChange={handleSortChange} value={sort} name='sort' className="select select-bordered w-full max-w-xs">
+                            <option value={''} disabled>Sort by price</option>
+                            <option value={'asc'}>Low to High</option>
+                            <option value={'des'}>High to Low</option>
+                        </select>
+                        <button onClick={()=>setRecent("recent")} className='px-3 py-2 text-[12px] text-nowrap rounded-md bg-blue-500  text-white font-bold'>Newest first</button>
+                    </div>
+
                     {/* price range customization div */}
                     <div>
                         <h1 className='text-[16px]  font-medium text-start text-gray-500'>Price Range</h1>
@@ -142,7 +165,7 @@ const AllProducts = () => {
                             </div>
                         </div>
                     </div>
-                    {/* product name customization div */}
+                    {/* product brand name customization div */}
                     <div>
                         <h1 className='text-[16px]  font-medium text-start text-gray-500'>Brand Name</h1>
                         <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>
@@ -167,6 +190,8 @@ const AllProducts = () => {
                             }
                         </div>
                     </div>
+
+                    {/* category customization */}
                     <div>
                         <h1 className='text-[16px]  font-medium text-start text-gray-500'>Category</h1>
                         <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>
@@ -203,6 +228,7 @@ const AllProducts = () => {
                             <h2 className='font-bold text-gray-500'>{product?.productName}</h2>
                             <p className='text-green-500 font-semibold'>${product?.price}</p>
                             <p className='text-gray-700'>{product?.category}</p>
+                            <p className='flex items-center gap-2 justify-center'><TbCalendarCog /><span>{product?.creationDateTime.slice(0, 10)}</span><span> {product?.creationDateTime.slice(11, 16)}</span></p>
                         </div>)
                     }
                 </div>

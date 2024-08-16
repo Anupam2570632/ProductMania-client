@@ -44,8 +44,8 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-4 lg:flex hidden">
-                <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">LogIn</button>
-                <button className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">SignUp</button>
+                <Link to={'/login'} className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">LogIn</Link>
+                <Link to={'/register'} className="text-white bg-blue-600 px-4 py-2 rounded-md font-bold">SignUp</Link>
             </div>
         </div>
     );

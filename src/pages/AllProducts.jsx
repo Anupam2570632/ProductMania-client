@@ -5,6 +5,7 @@ import { MdPlayArrow } from 'react-icons/md';
 import { TbCalendarCog } from "react-icons/tb";
 import { FaTimesCircle } from 'react-icons/fa';
 import { IoTime } from 'react-icons/io5';
+import { SimplePagination } from '../components/Pagination';
 
 
 
@@ -22,6 +23,9 @@ const AllProducts = () => {
     const [maxPrice, setMaxPrice] = useState(100000)
     const [sort, setSort] = useState('')
     const [recent, setRecent] = useState('')
+    const [totalPages, setTotalPages] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
+
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -41,15 +45,25 @@ const AllProducts = () => {
         setSort('')
     }
 
-
+    console.log(currentPage)
     useEffect(() => {
-        fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}`)
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data)
-                console.log(data)
-            })
-    }, [search, selectedBrand, selectedCategory, maxPrice, minPrice, sort, recent])
+        try {
+            fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}&page=${currentPage}&limit=8`)
+                .then(res => res.json())
+                .then(data => {
+                    setProducts(data.products)
+                    setCurrentPage(data.currentPage)
+                    setTotalPages(data.totalPages)
+                    console.log(data)
+                })
+        }
+        catch (error) {
+            return <>
+                {error}
+            </>
+
+        }
+    }, [search, selectedBrand, selectedCategory, maxPrice, minPrice, sort, recent, currentPage])
 
     useEffect(() => {
         fetch(`http://localhost:5000/unique-values`)
@@ -77,7 +91,7 @@ const AllProducts = () => {
         setSort(e.target.value)
     }
 
-    console.log(sort)
+    console.log('current page', currentPage)
 
     return (
         <div className='container mx-auto py-10'>
@@ -128,7 +142,7 @@ const AllProducts = () => {
                             <option value={'asc'}>Low to High</option>
                             <option value={'des'}>High to Low</option>
                         </select>
-                        <button onClick={()=>setRecent("recent")} className='px-3 py-2 text-[12px] text-nowrap rounded-md bg-blue-500  text-white font-bold'>Newest first</button>
+                        <button onClick={() => setRecent("recent")} className='px-3 py-2 text-[12px] text-nowrap rounded-md bg-blue-500  text-white font-bold'>Newest first</button>
                     </div>
 
                     {/* price range customization div */}
@@ -232,6 +246,10 @@ const AllProducts = () => {
                         </div>)
                     }
                 </div>
+
+            </div>
+            <div className='flex items-center justify-center pt-10'>
+                <SimplePagination currentPage={currentPage} totalPages={totalPages} setTotalPages={setTotalPages} setCurrentPage={setCurrentPage} />
             </div>
         </div>
     );

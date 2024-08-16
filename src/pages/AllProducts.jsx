@@ -11,6 +11,7 @@ import { SimplePagination } from '../components/Pagination';
 
 const AllProducts = () => {
 
+    const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState('')
     const [uniqueStatus, setUniqueStatus] = useState({})
@@ -54,7 +55,7 @@ const AllProducts = () => {
                     setProducts(data.products)
                     setCurrentPage(data.currentPage)
                     setTotalPages(data.totalPages)
-                    console.log(data)
+                    setLoading(false)
                 })
         }
         catch (error) {
@@ -91,7 +92,14 @@ const AllProducts = () => {
         setSort(e.target.value)
     }
 
-    console.log('current page', currentPage)
+    //if data is loading return loading spinner
+
+    if(loading){
+        return <div>
+            loading....
+        </div>
+    }
+
 
     return (
         <div className='container mx-auto py-10'>

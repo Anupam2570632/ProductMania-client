@@ -1,9 +1,10 @@
 import React from 'react';
+import FeaturedProducts from '../components/FeaturedProducts';
 
 const Home = () => {
     return (
         <div>
-            this is home page
+            <FeaturedProducts/>
         </div>
     );
 };

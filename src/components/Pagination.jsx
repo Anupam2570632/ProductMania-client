@@ -9,6 +9,10 @@ export function SimplePagination({ currentPage, totalPages, setCurrentPage }) {
         setActive(currentPage);
     }, [currentPage]);
 
+    if(totalPages < currentPage) {
+        setCurrentPage(1)
+    }
+
     const next = () => {
         if (active === totalPages) return;
         setActive(active + 1);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa6";
 import './css/product.css'
+import { MdPlayArrow } from 'react-icons/md';
 
 
 const AllProducts = () => {
@@ -11,6 +12,8 @@ const AllProducts = () => {
     const [selectedBrand, setSelectedBrand] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [searchType, setSearchType] = useState('')
+    const [minValue, setMinValue] = useState(0);
+    const [maxValue, setMaxValue] = useState(100);
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -32,7 +35,7 @@ const AllProducts = () => {
                 setProducts(data)
                 console.log(data)
             })
-    }, [search, selectedBrand])
+    }, [search, selectedBrand, selectedCategory])
 
     useEffect(() => {
         fetch(`http://localhost:5000/unique-values`)
@@ -48,6 +51,12 @@ const AllProducts = () => {
         const category = event.target.value;
         setSelectedCategory(category)
     }
+
+
+    const handleSet = () => {
+
+    };
+
 
     console.log(uniqueStatus)
 
@@ -90,6 +99,39 @@ const AllProducts = () => {
             }
             <div className='flex flex-col lg:flex-row gap-10'>
                 <div className='lg:w-1/5 '>
+                    {/* price range customization div */}
+                    <div>
+                        <h1>Price Range</h1>
+                        <div className=" flex flex-col justify-center items-center space-y-4">
+                            <div className="flex space-x-4">
+                                <div>
+                                    <input
+                                        type="number"
+                                        value={minValue}
+                                        onChange={(e) => setMinValue(parseInt(e.target.value))}
+                                        className="px-4 max-w-[90px] py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        min={0}
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="number"
+                                        value={maxValue}
+                                        onChange={(e) => setMaxValue(parseInt(e.target.value))}
+                                        className="px-4 max-w-[90px] py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        min={minValue}
+                                    />
+                                </div>
+                                <button
+                                    onClick={handleSet}
+                                    className="text-xl p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                >
+                                    <MdPlayArrow />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {/* product name customization div */}
                     <div>
                         <h1>Brand Name</h1>
                         <div className='flex border overflow-y-auto flex-col gap-2 max-h-[140px] p-4'>

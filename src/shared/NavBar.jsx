@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const NavBar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut, searchType, setSearchType, setSearch, search } = useContext(AuthContext)
     console.log(user)
+    const navigate = useNavigate()
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/products'}>All Product</NavLink></li>
         <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
     </>
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        setSearch(e.target.searchValue.value)
+        navigate('/products')
+
+    }
 
     const handleLogOut = () => {
         logOut()
@@ -51,15 +59,17 @@ const NavBar = () => {
                 <ul className="menu menu-horizontal px-1 items-center">
                     {links}
 
-                    <div className='max-w-[300px] '>
+                    {/* search box div */}
+                    <div className=' max-w-[300px] '>
                         <label className="input input-bordered flex items-center gap-2">
-                            <form >
+                            <form onSubmit={handleSearch}>
                                 <input
                                     type="text"
                                     name='searchValue'
                                     className="grow"
                                     placeholder="Search"
-
+                                    value={searchType}
+                                    onChange={(e) => setSearchType(e.target.value)}
                                 />
                                 <button type='submit'></button>
                             </form>

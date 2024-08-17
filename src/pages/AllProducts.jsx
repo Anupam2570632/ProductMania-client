@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa6";
 import './css/product.css'
 import { MdPlayArrow } from 'react-icons/md';
@@ -6,18 +6,19 @@ import { TbCalendarCog } from "react-icons/tb";
 import { FaTimesCircle } from 'react-icons/fa';
 import { IoTime } from 'react-icons/io5';
 import { SimplePagination } from '../components/Pagination';
+import { AuthContext } from '../Provider/AuthProvider';
 
 
 
 const AllProducts = () => {
 
+    const {search, setSearch, setSearchType, searchType}= useContext(AuthContext)
+
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
-    const [search, setSearch] = useState('')
     const [uniqueStatus, setUniqueStatus] = useState({})
     const [selectedBrand, setSelectedBrand] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
-    const [searchType, setSearchType] = useState('')
     const [minValue, setMinValue] = useState(0);
     const [maxValue, setMaxValue] = useState(0);
     const [minPrice, setMinPrice] = useState(0)
@@ -28,10 +29,7 @@ const AllProducts = () => {
     const [currentPage, setCurrentPage] = useState(1)
 
 
-    const handleSearch = (e) => {
-        e.preventDefault()
-        setSearch(e.target.searchValue.value)
-    }
+   
 
     const handleReset = () => {
         setSearch('')
@@ -116,32 +114,7 @@ const AllProducts = () => {
             <div className='flex flex-col lg:flex-row gap-10'>
                 {/* Categorization item div */}
                 <div className='lg:w-1/5 space-y-6'>
-                    {/* search box div */}
-                    <div className='py-4 max-w-[300px] '>
-                        <label className="input input-bordered flex items-center gap-2">
-                            <form onSubmit={handleSearch}>
-                                <input
-                                    type="text"
-                                    name='searchValue'
-                                    className="grow"
-                                    placeholder="Search"
-                                    value={searchType}
-                                    onChange={(e) => setSearchType(e.target.value)}
-                                />
-                                <button type='submit'></button>
-                            </form>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 16 16"
-                                fill="currentColor"
-                                className="h-5 w-5 opacity-80">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                                    clipRule="evenodd" />
-                            </svg>
-                        </label>
-                    </div>
+                   
 
                     {/* sorting div */}
                     <div className='flex items-center gap-2'>
@@ -246,7 +219,7 @@ const AllProducts = () => {
                 <div className='grid lg:w-4/5 grid-cols-1 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-4'>
                     {
                         // single product card
-                        products?.map((product) => <div className='productCard max-h-[450px] relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
+                        products?.map((product) => <div className='productCard max-h-[360px] relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
                             <img className='productImage h-[200px] w-[200px] object-cover object-center' src={product.productImage} alt={product.productName} />
                             <p className='absolute bg-green-500 rounded-full px-2 flex gap-1 items-center top-4 right-6 text-white'><FaStar className='text-yellow-300' />{product?.ratings}</p>
                             <h2 className='font-bold text-gray-500'>{product?.productName}</h2>

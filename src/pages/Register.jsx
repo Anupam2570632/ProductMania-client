@@ -7,17 +7,19 @@ import {
     Checkbox,
     Button,
 } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const [show, setShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [error, setError] = useState('')
+    const location = useLocation()
     const { createUser, updateUser, logOut, googleLogin } = useContext(AuthContext)
 
     const {
@@ -42,11 +44,13 @@ const Register = () => {
                             .catch()
                         setLoading(false)
                         navigate('/login')
+                        toast.success('User create successfully!')
                     })
                 // console.log(result.user)
             })
             .catch(err => {
                 console.error(err)
+                toast.success(`${err.message}`)
             })
     }
 
@@ -54,15 +58,17 @@ const Register = () => {
         googleLogin()
             .then(user => {
                 console.log(user)
-                navigate('/')
+                navigate(location?.state ? location.state : '/')
+                toast.success('Login in successfully!')
             })
             .catch(err => {
                 console.log(err)
+                toast.error(`${err.message}`)
             })
     }
 
     return (
-        <div className="flex gap-6 py-6 md:py-16 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
+        <div className="flex gap-6 py-6 md:py-16 items-center justify-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
 
             <div className="md:w-1/2">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-96 mx-auto">

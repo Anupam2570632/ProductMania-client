@@ -2,12 +2,15 @@
 
 ProductMania is a full-stack e-commerce website that allows users to explore and purchase a wide range of products. The platform features a user-friendly interface, advanced search and filtering functionalities, and responsive design.
 
+## Live Link - [https://product-mania-web.netlify.app/](https://product-mania-web.netlify.app/)
+## Server Side Code - [https://github.com/Anupam2570632/productMania-server]
+
 ## Table of Contents
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Project Setup](#project-setup)
-- [Installation](#installation)
+- [Run this project locally](#installation)
 
 
 ## Features
@@ -32,6 +35,7 @@ ProductMania is a full-stack e-commerce website that allows users to explore and
   - MongoDB (as a database)
 - **Other Tools**:
   - React-hook-form
+  - React tostify
 
 ## Project Setup
 
@@ -47,44 +51,25 @@ Before you begin, ensure you have the following tools installed:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/productmania.git
-    cd productmania
+    git clone https://github.com/Anupam2570632/ProductMania-client
+    cd ProductMania-client
     ```
 
-2. **Install dependencies** for both frontend and backend:
+2. **Install dependencies** for both frontend:
 
    - Navigate to the `client` directory (Frontend):
      ```bash
-     cd client
      npm install
      ```
 
-   - Navigate to the `server` directory (Backend):
-     ```bash
-     cd ../server
-     npm install
-     ```
 
-3. **Set up environment variables**:
 
-   - In the `server` directory, create a `.env` file and add the following environment variables:
-     ```
-     PORT=5000
-     MONGO_URI=your_mongo_db_connection_string
-     JWT_SECRET=your_jwt_secret_key
-     ```
-
-4. **Run the development server**:
+3. **Run the development server**:
 
    - In the `server` directory, start the backend server:
      ```bash
      npm run dev
      ```
 
-   - In the `client` directory, start the frontend server:
-     ```bash
-     npm start
-     ```
-
-   The frontend should now be running on `http://localhost:3000/` and the backend on `http://localhost:5000/`.
+   The frontend should now be running on `http://localhost:5173/`.
 

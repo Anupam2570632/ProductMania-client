@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { MdErrorOutline } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [show, setShow] = useState(false)
@@ -32,10 +33,12 @@ const Login = () => {
         logIn(data.email, data.password)
         .then(result=>{
             console.log(result.user)
-            navigate('/')
+            toast.success('Login in successfully!')
+            navigate(location?.state ? location.state : '/')
         })
         .catch(err=>{
             console.err(err.message)
+            toast.error(`${err.message}`)
         })
     }
 
@@ -43,16 +46,18 @@ const Login = () => {
         googleLogin()
             .then(user => {
                 console.log(user)
-                navigate('/')
+                navigate(location?.state ? location.state : '/')
+                toast.success('Login in successfully!')
             })
             .catch(err => {
                 console.log(err)
+                toast.error(`${err.message}`)
             })
     }
     console.log(user)
 
     return (
-        <div className="flex gap-6 py-6 md:py-16 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
+        <div className="flex gap-6 py-6 md:py-16 items-center justify-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
 
             <div className="md:w-1/2">
                 <form onSubmit={handleSubmit(onSubmit)} className="max-w-96 mx-auto">

@@ -49,7 +49,7 @@ const AllProducts = () => {
     console.log(currentPage)
     useEffect(() => {
         try {
-            setLoading(true)
+            
             fetch(`https://product-mania-server-1.vercel.app/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}&page=${currentPage}&limit=8`)
                 .then(res => res.json())
                 .then(data => {
@@ -109,13 +109,13 @@ const AllProducts = () => {
         setSort(e.target.value)
     }
 
-    //if data is loading return loading spinner
+    // if data is loading return loading spinner
 
-    // if (loading) {
-    //     return <div className='flex items-center justify-center py-10'>
-    //         <Spinner className="h-16 w-16 text-gray-900/50" />
-    //     </div>
-    // }
+    if (loading) {
+        return <div className='flex items-center justify-center py-10'>
+            <Spinner className="h-16 w-16 text-gray-900/50" />
+        </div>
+    }
 
 
     return (

@@ -1,3 +1,4 @@
+import { Spinner } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { TbCalendarCog } from 'react-icons/tb';
@@ -5,20 +6,21 @@ import { Link } from 'react-router-dom';
 
 const FeaturedProducts = () => {
     const [products, setProducts] = useState([])
-    const [loading, setLoading]= useState(true)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`https://product-mania-server-1.vercel.app/products?categoryName=${'Smartphone'}`)
+        fetch(`https://product-mania-server-1.vercel.app/products?sortByRating=${'des'}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products)
                 setLoading(false)
             })
     }, [])
-    if(loading){
-        return <div>
-            Loading....
+    if (loading) {
+        return <div className='flex items-center justify-center py-10'>
+            <Spinner className="h-16 w-16 text-gray-900/50" />
         </div>
+
     }
     return (
         <div>
@@ -37,11 +39,11 @@ const FeaturedProducts = () => {
                 }
             </div>
 
-            <button className='px-4 py-2 my-10 rounded-md bg-blue-500 text-white font-bold'>
-                <Link to={'/products'}>
+            <Link to={'/products'}>
+                <button className='px-4 py-2 my-10 rounded-md bg-blue-500 text-white font-bold'>
                     See All
-                </Link>
-            </button>
+                </button>
+            </Link>
 
         </div>
     );

@@ -7,12 +7,13 @@ import { FaTimesCircle } from 'react-icons/fa';
 import { IoTime } from 'react-icons/io5';
 import { SimplePagination } from '../components/Pagination';
 import { AuthContext } from '../Provider/AuthProvider';
+import { Spinner } from '@material-tailwind/react';
 
 
 
 const AllProducts = () => {
 
-    const {search, setSearch, setSearchType, searchType}= useContext(AuthContext)
+    const { search, setSearch, setSearchType, searchType } = useContext(AuthContext)
 
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
@@ -29,7 +30,7 @@ const AllProducts = () => {
     const [currentPage, setCurrentPage] = useState(1)
 
 
-   
+
 
     const handleReset = () => {
         setSearch('')
@@ -47,6 +48,7 @@ const AllProducts = () => {
     console.log(currentPage)
     useEffect(() => {
         try {
+            setLoading(true)
             fetch(`https://product-mania-server-1.vercel.app/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}&page=${currentPage}&limit=8`)
                 .then(res => res.json())
                 .then(data => {
@@ -92,11 +94,11 @@ const AllProducts = () => {
 
     //if data is loading return loading spinner
 
-    if (loading) {
-        return <div>
-            loading....
-        </div>
-    }
+    // if (loading) {
+    //     return <div className='flex items-center justify-center py-10'>
+    //         <Spinner className="h-16 w-16 text-gray-900/50" />
+    //     </div>
+    // }
 
 
     return (
@@ -106,15 +108,15 @@ const AllProducts = () => {
 
             {/* if no products available */}
             {
-                products?.length === 0 && <div>
-                    no products found
+                products?.length === 0 && <div className='text-gray-700 font-bold text-xl'>
+                    no products found !
                 </div>
             }
 
             <div className='flex flex-col lg:flex-row gap-10'>
                 {/* Categorization item div */}
                 <div className='lg:w-1/5 space-y-6'>
-                   
+
 
                     {/* sorting div */}
                     <div className='flex items-center gap-2'>

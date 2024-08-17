@@ -101,7 +101,7 @@ const NavBar = () => {
                         <div
                             tabIndex={0}
                             className="dropdown-content card card-compact  text-primary-content z-[1]  p-2 shadow">
-                            <div className="card-body">
+                            <div className="card-body bg-white">
                                 <h1 className='text-gray-800 text-start py-2'>{user?.displayName}</h1>
                                 <h1 className='text-gray-800 text-start py-2'>{user?.email}</h1>
                                 <button onClick={handleLogOut} className='px-4 py-2 rounded-md bg-blue-500 text-white font-bold text-nowrap'>Log Out</button>
@@ -156,7 +156,7 @@ const NavBar = () => {
                                 <div
                                     tabIndex={0}
                                     className="dropdown-content card card-compact  text-primary-content z-[1]  p-2 shadow">
-                                    <div className="card-body">
+                                    <div className="card-body bg-white">
                                         <h1 className='text-gray-800 text-start py-2'>{user?.displayName}</h1>
                                         <h1 className='text-gray-800 text-start py-2'>{user?.email}</h1>
                                         <button onClick={handleLogOut} className='px-4 py-2 rounded-md bg-blue-500 text-white font-bold text-nowrap'>Log Out</button>

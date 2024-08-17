@@ -9,6 +9,7 @@ import { SimplePagination } from '../components/Pagination';
 import { AuthContext } from '../Provider/AuthProvider';
 import { Spinner } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -18,7 +19,6 @@ const AllProducts = () => {
 
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
-    const [uniqueStatus, setUniqueStatus] = useState({})
     const [selectedBrand, setSelectedBrand] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [minValue, setMinValue] = useState(0);
@@ -67,11 +67,27 @@ const AllProducts = () => {
         }
     }, [search, selectedBrand, selectedCategory, maxPrice, minPrice, sort, recent, currentPage])
 
-    useEffect(() => {
-        fetch('https://product-mania-server-1.vercel.app/unique-values')
-            .then(res => res.json())
-            .then(data => setUniqueStatus(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch('https://product-mania-server-1.vercel.app/unique-values')
+    //         .then(res => res.json())
+    //         .then(data => setUniqueStatus(data))
+    // }, [])
+
+    const { isPending: classPending, data: uniqueStatus, refetch } = useQuery({
+        queryKey: ['unique-values'],
+        queryFn: async () => {
+            const response = await fetch('https://product-mania-server-1.vercel.app/unique-values');
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const data = await response.json();
+            return data;
+        },
+    });
+    
+    console.log('unique value', uniqueStatus)
 
     const handleBrandChange = (event) => {
         const brand = event.target.value;

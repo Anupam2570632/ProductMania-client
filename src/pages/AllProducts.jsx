@@ -47,7 +47,7 @@ const AllProducts = () => {
     console.log(currentPage)
     useEffect(() => {
         try {
-            fetch(`http://localhost:5000/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}&page=${currentPage}&limit=8`)
+            fetch(`https://product-mania-server-1.vercel.app/products?name=${search}&brandName=${selectedBrand}&categoryName=${selectedCategory}&maxPrice=${maxPrice}&minPrice=${minPrice}&sort=${sort}&sortByDate=${recent}&page=${currentPage}&limit=8`)
                 .then(res => res.json())
                 .then(data => {
                     setProducts(data.products)
@@ -65,7 +65,7 @@ const AllProducts = () => {
     }, [search, selectedBrand, selectedCategory, maxPrice, minPrice, sort, recent, currentPage])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/unique-values`)
+        fetch('https://product-mania-server-1.vercel.app/unique-values')
             .then(res => res.json())
             .then(data => setUniqueStatus(data))
     }, [])

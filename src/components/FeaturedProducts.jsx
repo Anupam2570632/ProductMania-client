@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
     const [loading, setLoading]= useState(true)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products?categoryName=${'Smartphone'}`)
+        fetch(`https://product-mania-server-1.vercel.app/products?categoryName=${'Smartphone'}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products)

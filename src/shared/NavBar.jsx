@@ -70,7 +70,7 @@ const NavBar = () => {
                                 type="text"
                                 name='searchValue'
                                 className="grow"
-                                placeholder="Search"
+                                placeholder="Search products"
                                 value={searchType}
                                 onChange={(e) => setSearchType(e.target.value)}
                             />
@@ -110,7 +110,7 @@ const NavBar = () => {
                     </div>
                 }
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 items-center">
+                    <ul className="menu menu-horizontal px-1 items-center space-x-1">
                         {links}
 
                         {/* search box div: on large  device */}
@@ -121,7 +121,7 @@ const NavBar = () => {
                                         type="text"
                                         name='searchValue'
                                         className="grow"
-                                        placeholder="Search"
+                                        placeholder="Search products"
                                         value={searchType}
                                         onChange={(e) => setSearchType(e.target.value)}
                                     />
@@ -181,7 +181,7 @@ const NavBar = () => {
                                 type="text"
                                 name='searchValue'
                                 className="grow"
-                                placeholder="Search"
+                                placeholder="Search products"
                                 value={searchType}
                                 onChange={(e) => setSearchType(e.target.value)}
                             />

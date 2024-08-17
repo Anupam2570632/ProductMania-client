@@ -9,14 +9,16 @@ import {
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
     const [show, setShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [error, setError] = useState('')
+    const { createUser, updateUser, logOut, googleLogin } = useContext(AuthContext)
 
     const {
         register,
@@ -24,14 +26,44 @@ const Register = () => {
         handleSubmit,
     } = useForm()
     const onSubmit = (data) => {
-      console.log(data)
+        console.log(data)
+        createUser(data.email, data.password)
+            .then(result => {
+                updateUser(data.name, data.photoURL)
+                    .then(() => {
+                        const user = {
+                            name: data.name,
+                            email: data.email,
+                            image: data.photoURL,
+                        }
 
+                        logOut()
+                            .then()
+                            .catch()
+                        setLoading(false)
+                        navigate('/login')
+                    })
+                // console.log(result.user)
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(user => {
+                console.log(user)
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     return (
         <div className="flex gap-6 py-6 md:py-16 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
-            
+
             <div className="md:w-1/2">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-96 mx-auto">
                     <CardHeader
@@ -56,7 +88,7 @@ const Register = () => {
                                     <FaRegEye onClick={() => setShow(true)} className="absolute right-4 text-xl top-[14px]"></FaRegEye>
                             }
                         </div>
-                      
+
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Checkbox
@@ -90,6 +122,10 @@ const Register = () => {
                         </Typography>
                     </CardFooter>
                 </form>
+                <div className="divider max-w-96 mx-auto p-4">or login with</div>
+                <div className="max-w-96 mx-auto p-4">
+                    <button onClick={handleGoogleLogin} className="btn btn-outline btn-block btn-neutral"><FaGoogle className="text-xl font-bold" />Google</button>
+                </div>
             </div>
         </div>
     );

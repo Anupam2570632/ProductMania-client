@@ -13,6 +13,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { MdErrorOutline } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
     const [show, setShow] = useState(false)
@@ -20,18 +21,39 @@ const Login = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const location = useLocation()
+    const { googleLogin, user, logIn } = useContext(AuthContext)
+
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm()
     const onSubmit = (data) => {
-       console.log(data)
+        logIn(data.email, data.password)
+        .then(result=>{
+            console.log(result.user)
+            navigate('/')
+        })
+        .catch(err=>{
+            console.err(err.message)
+        })
     }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(user => {
+                console.log(user)
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    console.log(user)
 
     return (
         <div className="flex gap-6 py-6 md:py-16 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
- 
+
             <div className="md:w-1/2">
                 <form onSubmit={handleSubmit(onSubmit)} className="max-w-96 mx-auto">
                     <CardHeader
@@ -94,7 +116,7 @@ const Login = () => {
                 </form>
                 <div className="divider max-w-96 mx-auto p-4">or login with</div>
                 <div className="max-w-96 mx-auto p-4">
-                    <button className="btn btn-outline btn-block btn-neutral"><FaGoogle className="text-xl font-bold" />Google</button>
+                    <button onClick={handleGoogleLogin} className="btn btn-outline btn-block btn-neutral"><FaGoogle className="text-xl font-bold" />Google</button>
                 </div>
             </div>
         </div>

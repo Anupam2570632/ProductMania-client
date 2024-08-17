@@ -94,7 +94,7 @@ const AllProducts = () => {
 
     //if data is loading return loading spinner
 
-    if(loading){
+    if (loading) {
         return <div>
             loading....
         </div>
@@ -161,8 +161,9 @@ const AllProducts = () => {
                                 <div>
                                     <input
                                         type="number"
-                                        value={minValue}
+                                        value={minValue == 0 ? 'Min' : minValue}
                                         name='minValue'
+                                        placeholder='Min'
                                         onChange={(e) => setMinValue(parseInt(e.target.value))}
                                         className="px-4 max-w-[90px] py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                         min={0}
@@ -171,8 +172,9 @@ const AllProducts = () => {
                                 <div>
                                     <input
                                         type="number"
-                                        value={maxValue}
+                                        value={maxValue !== 0 ? maxValue : 'Max'}
                                         name='maxValue'
+                                        placeholder='Max'
                                         onChange={(e) => setMaxValue(parseInt(e.target.value))}
                                         className="px-4 max-w-[90px] py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                         min={minValue}

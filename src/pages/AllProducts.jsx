@@ -8,6 +8,7 @@ import { IoTime } from 'react-icons/io5';
 import { SimplePagination } from '../components/Pagination';
 import { AuthContext } from '../Provider/AuthProvider';
 import { Spinner } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -221,14 +222,14 @@ const AllProducts = () => {
                 <div className='grid lg:w-4/5 grid-cols-1 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-4'>
                     {
                         // single product card
-                        products?.map((product) => <div className='productCard max-h-[380px] relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
+                        products?.map((product) => <Link to={`/productDetails/${product._id}`} className='productCard max-h-[380px] relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
                             <img className='productImage h-[200px] w-[200px] object-cover object-center' src={product.productImage} alt={product.productName} />
                             <p className='absolute bg-green-500 rounded-full px-2 flex gap-1 items-center top-4 right-6 text-white'><FaStar className='text-yellow-300' />{product?.ratings}</p>
                             <h2 className='font-bold text-gray-500'>{product?.productName}</h2>
                             <p className='text-green-500 font-semibold'>${product?.price}</p>
                             <p className='text-gray-700'>{product?.category}</p>
                             <p className='flex items-center gap-2 justify-center'><TbCalendarCog /><span>{product?.creationDateTime.slice(0, 10)}</span><span> {product?.creationDateTime.slice(11, 16)}</span></p>
-                        </div>)
+                        </Link>)
                     }
                 </div>
 

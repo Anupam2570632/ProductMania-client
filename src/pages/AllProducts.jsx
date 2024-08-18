@@ -241,6 +241,7 @@ const AllProducts = () => {
                         products?.map((product) => <Link to={`/productDetails/${product._id}`} className='productCard max-h-[380px] relative border rounded-md hover:shadow-md space-y-2 p-4 max-w-[300px] mx-auto' key={product._id}>
                             <img className='productImage h-[200px] w-[200px] object-cover object-center' src={product.productImage} alt={product.productName} />
                             <p className='absolute bg-green-500 rounded-full px-2 flex gap-1 items-center top-4 right-6 text-white'><FaStar className='text-yellow-300' />{product?.ratings}</p>
+                            <p className='absolute bg-green-500 rounded-full px-2 top-12 right-6 text-white'>{product?.brandName}</p>
                             <h2 className='font-bold text-gray-500'>{product?.productName}</h2>
                             <p className='text-green-500 font-semibold'>${product?.price}</p>
                             <p className='text-gray-700'>{product?.category}</p>

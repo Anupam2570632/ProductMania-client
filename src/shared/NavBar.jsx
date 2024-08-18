@@ -69,12 +69,12 @@ const NavBar = () => {
 
                 {/* search box div: on medium device */}
                 <div className=' max-w-[300px] hidden md:flex lg:hidden items-end'>
-                    <label className="input input-bordered flex items-center gap-2">
+                    <label className="input input-bordered flex items-center gap-2 input-sm p-5">
                         <form onSubmit={handleSearch}>
                             <input
                                 type="text"
                                 name='searchValue'
-                                className="grow"
+                                className="grow placeholder-gray-600"
                                 placeholder="Search products"
                                 value={searchType}
                                 onChange={(e) => setSearchType(e.target.value)}
@@ -120,12 +120,12 @@ const NavBar = () => {
 
                         {/* search box div: on large  device */}
                         <div className=' max-w-[300px] '>
-                            <label className="input input-bordered flex items-center gap-2">
+                            <label className="input input-bordered flex items-center gap-2 input-sm p-5">
                                 <form onSubmit={handleSearch}>
                                     <input
                                         type="text"
                                         name='searchValue'
-                                        className="grow"
+                                        className="grow placeholder-gray-600"
                                         placeholder="Search products"
                                         value={searchType}
                                         onChange={(e) => setSearchType(e.target.value)}
@@ -180,12 +180,12 @@ const NavBar = () => {
             {/* search box div: on small device */}
             <div className='flex items-center justify-center'>
                 <div className='flex md:hidden py-6 bg-white bg-opacity-80'>
-                    <label className="input input-bordered flex items-center gap-2">
+                    <label className="input input-bordered flex items-center gap-2 input-sm p-5">
                         <form onSubmit={handleSearch}>
                             <input
                                 type="text"
                                 name='searchValue'
-                                className="grow"
+                                className="grow placeholder-gray-500"
                                 placeholder="Search products"
                                 value={searchType}
                                 onChange={(e) => setSearchType(e.target.value)}
